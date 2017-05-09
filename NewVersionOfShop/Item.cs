@@ -14,6 +14,8 @@ namespace NewVersionOfShop
         private string name;
         private double price;
         private string category;
+
+        private int m_value = 0;
         #endregion
 
         #region PublicProperties
@@ -54,6 +56,12 @@ namespace NewVersionOfShop
         {
             if (other == null) return false;
             return (this.artNum.Equals(other.artNum));
+        }
+        public int CompareTo(Item other)
+        {
+            if (other == null) return 1;
+
+            return m_value.CompareTo(other.m_value);
         }
         #endregion
     }
