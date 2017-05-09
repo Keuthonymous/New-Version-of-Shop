@@ -8,9 +8,17 @@ namespace NewVersionOfShop
 {
     class ShopStorage : ItemStorage<Item>
     {
-        public void ChangePriceBulk(double price, string artNum)
+        public void ChangePriceBulk(double newPrice, string searchArtNum)
         {
-            int count = InternalStorage.Where(x => x.Equals(artNum)).Count();
+            var query = from item in InternalStorage
+                        where item.ArtNum == searchArtNum
+                        orderby item.Price
+                        select item;
+
+            foreach (Item i in query)
+            {
+                i.Price = newPrice;
+            }
         }
     }
 }
