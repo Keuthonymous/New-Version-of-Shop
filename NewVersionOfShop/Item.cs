@@ -14,6 +14,7 @@ namespace NewVersionOfShop
         private string name;
         private double price;
         private string category;
+        private bool inStock;
 
         private int m_value = 0;
         #endregion
@@ -40,15 +41,21 @@ namespace NewVersionOfShop
             get { return category; }
             set { category = value; }
         }
+        public bool InStock
+        {
+            get { return inStock; }
+            set { inStock = value; }
+        }
         #endregion
         #region Constructor
         //Item constructor
-        public Item(string ArtNum, string Name, double Price, string Category)
+        public Item(string ArtNum, string Name, double Price, string Category, bool InStock)
         {
             this.ArtNum = artNum;
             this.Name = name;
             this.Price = price;
             this.Category = category;
+            this.InStock = inStock;
         }
         #endregion
         #region Methods
