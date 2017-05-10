@@ -23,10 +23,9 @@ namespace NewVersionOfShop
         #endregion
 
         #region Constructor
-        public void Storage()
+        public ItemStorage()
         {
             InternalStorage = new List<T>();
-            ID += 1;
         }
         #endregion
         #region SearchParams

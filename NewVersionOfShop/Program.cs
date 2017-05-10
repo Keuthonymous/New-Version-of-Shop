@@ -21,8 +21,9 @@ namespace NewVersionOfShop
         {
             while (true)
             {
+                ItemStorage<Item> Warehouse = new ItemStorage<Item>();
                 ShopStorage theStore = new ShopStorage();
-                theStore.shopStorage();
+                ShoppingCart Cart = new ShoppingCart();
 
                 switch (Console.ReadKey().KeyChar)
                 {
@@ -48,6 +49,24 @@ namespace NewVersionOfShop
                                               " | Price: " + i.Price +
                                               " | Category: " + i.Category +
                                               " | In stock: " + i.InStock);
+                        }
+                        Console.ReadKey();
+                        break;
+                    
+                    case '3':
+                        if (Cart.GetItemsInCart() == null)
+                        {
+                            Console.WriteLine("Your cart is empty!");
+                        }
+                        else
+                        {
+                            foreach (var i in Cart.GetItemsInCart())
+                            {
+                                Console.WriteLine("\nName: " + i.Name +
+                                                  " | Article Number: " + i.ArtNum +
+                                                  " | Price: " + i.Price +
+                                                  " | Category: " + i.Category);
+                            }
                         }
                         Console.ReadKey();
                         break;

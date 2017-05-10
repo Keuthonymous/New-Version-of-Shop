@@ -8,26 +8,35 @@ namespace NewVersionOfShop
 {
     class ShoppingCart : ItemStorage<Item>
     {
-        public void AddToCart(Item i)
+        public ShoppingCart()
         {
-            if (i.InCart == false)
-            {
-                i.InCart = true;
-            }
+            InternalStorage = new List<Item>();
         }
-        public IEnumerable<Item> Checkout()
+
+        public void AddToCart(Item itemToAdd)
+        {
+            InternalStorage.Add(itemToAdd);
+        }
+        public IEnumerable<Item> GetItemsInCart()
         {
             var query = from i in InternalStorage
                         where i.InCart == true
                         orderby i.Name
                         select i;
 
-            return query;
+            if (query != null)
+            {
+                return query;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public IEnumerable<Item> GetReceipt()
         {
-            return Checkout();
+            return GetItemsInCart();
         }
     }
 }

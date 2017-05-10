@@ -8,9 +8,10 @@ namespace NewVersionOfShop
 {
     class ShopStorage : ItemStorage<Item>
     {
-        public void shopStorage()
+        public ShopStorage()
         {
-            Storage();
+            InternalStorage = new List<Item>();
+
             InternalStorage.Add(new Item
                 {
                     ArtNum = "A1234",
