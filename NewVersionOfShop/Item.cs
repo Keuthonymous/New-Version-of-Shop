@@ -14,7 +14,8 @@ namespace NewVersionOfShop
         private string name;
         private double price;
         private string category;
-        private bool inStock;
+        private bool inStock = false;
+        private bool inCart = false;
 
         private int m_value = 0;
         #endregion
@@ -46,17 +47,23 @@ namespace NewVersionOfShop
             get { return inStock; }
             set { inStock = value; }
         }
+        public bool InCart
+        {
+            get { return inCart; }
+            set { inCart = value; }
+        }
         #endregion
         #region Constructor
         //Item constructor
-        public Item(string ArtNum, string Name, double Price, string Category, bool InStock)
+        /*public Item(string ArtNum, string Name, double Price, string Category, bool InStock, bool InCart)
         {
             this.ArtNum = artNum;
             this.Name = name;
             this.Price = price;
             this.Category = category;
             this.InStock = inStock;
-        }
+            this.InCart = inCart;
+        }*/
         #endregion
         #region Methods
         public bool Equals(Item other)

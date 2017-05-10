@@ -10,6 +10,66 @@ namespace NewVersionOfShop
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("##### Welcome to the shop using LINQ!! #####");
+
+            displayMainMenu();
+            MainSelection();
+           
+        }
+
+        private static void MainSelection()
+        {
+            while (true)
+            {
+                ShopStorage theStore = new ShopStorage();
+                theStore.shopStorage();
+
+                switch (Console.ReadKey().KeyChar)
+                {
+                    case '1':
+                        Console.Clear();
+                        foreach (var i in theStore.GetAllItems())
+                        {
+                            Console.WriteLine("\nName: " + i.Name +
+                                              " | Article Number: " + i.ArtNum +
+                                              " | Price: " + i.Price +
+                                              " | Category: " + i.Category +
+                                              " | In stock: " + i.InStock);
+                        }
+                        Console.ReadKey();
+                        break;
+
+                    case '2':
+                        Console.Clear();
+                        foreach (var i in theStore.GetItemsInStock())
+                        {
+                            Console.WriteLine("\nName: " + i.Name +
+                                              " | Article Number: " + i.ArtNum +
+                                              " | Price: " + i.Price +
+                                              " | Category: " + i.Category +
+                                              " | In stock: " + i.InStock);
+                        }
+                        Console.ReadKey();
+                        break;
+
+                    case '0':
+                        return;
+
+
+                    default:
+                        Console.WriteLine("Invalid entry, try again.");
+                        break;
+                }
+            }
+        }
+        static void displayMainMenu()
+        {
+            Console.WriteLine("\nMain Menu");
+            Console.WriteLine("\n1. View all Items.");
+            Console.WriteLine("2. View all items in stock.");
+            Console.WriteLine("3. View Items in cart.");
+            Console.WriteLine("4. Checkout.");
+            Console.WriteLine("0. Exit.");
         }
     }
 }

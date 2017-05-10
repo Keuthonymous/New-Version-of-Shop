@@ -25,7 +25,8 @@ namespace NewVersionOfShop
         #region Constructor
         public void Storage()
         {
-            this.InternalStorage = new List<T>();
+            InternalStorage = new List<T>();
+            ID += 1;
         }
         #endregion
         #region SearchParams
@@ -144,14 +145,17 @@ namespace NewVersionOfShop
 
             return query;
         }
-        #endregion
-        #region Methods
+
         //Gets all items in InternalStorage
         public IEnumerable<Item> GetAllItems()
         {
-            return InternalStorage;
-        }
+            var query = from i in InternalStorage
+                        select i;
 
+            return query;
+        }
+        #endregion
+        #region Methods
         //IEnumerator method
         public IEnumerator<T> GetEnumerator()
         {
