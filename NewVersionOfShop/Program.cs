@@ -12,7 +12,10 @@ namespace NewVersionOfShop
         {
             Console.WriteLine("##### Welcome to the shop using LINQ!! #####");
 
+            //Displays main menu
             displayMainMenu();
+
+            //Runs switch case for inputs
             MainSelection();
            
         }
@@ -21,12 +24,15 @@ namespace NewVersionOfShop
         {
             while (true)
             {
+                //Instantiates new ItemStorage, ShopStorage, and ShoppingCart
                 ItemStorage<Item> Warehouse = new ItemStorage<Item>();
                 ShopStorage theStore = new ShopStorage();
                 ShoppingCart Cart = new ShoppingCart();
 
+                //Switch case for main functions
                 switch (Console.ReadKey().KeyChar)
                 {
+                    //Displays all items in ItemStorage, known as Warehouse
                     case '1':
                         Console.Clear();
                         foreach (var i in theStore.GetAllItems())
@@ -39,7 +45,8 @@ namespace NewVersionOfShop
                         }
                         Console.ReadKey();
                         break;
-
+                       
+                    //Displays all items in ShopStorage known as theStore
                     case '2':
                         Console.Clear();
                         foreach (var i in theStore.GetItemsInStock())
@@ -49,10 +56,14 @@ namespace NewVersionOfShop
                                               " | Price: " + i.Price +
                                               " | Category: " + i.Category +
                                               " | In stock: " + i.InStock);
+
+                            Console.WriteLine("Would you like to add items to your cart? (Y/N)");
+                            AddToCart();
                         }
                         Console.ReadKey();
                         break;
                     
+                    //Displays items in Shopping cart as long as it is not empty
                     case '3':
                         if (Cart.GetItemsInCart() == null)
                         {
@@ -71,14 +82,30 @@ namespace NewVersionOfShop
                         Console.ReadKey();
                         break;
 
+                    //Exit case
                     case '0':
                         return;
 
-
+                    //Default case
                     default:
                         Console.WriteLine("Invalid entry, try again.");
                         break;
                 }
+            }
+        }
+
+        private static void AddToCart()
+        {
+            string input;
+            input = Console.ReadLine();
+            char nav = input[0];
+            Char.ToUpper(nav);
+
+            switch (nav)
+            { 
+                case 'Y':
+
+                    break;
             }
         }
         static void displayMainMenu()
