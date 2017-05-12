@@ -8,125 +8,62 @@ namespace NewVersionOfShop
 {
     class Program
     {
-
-        //Instantiates new ItemStorage, ShopStorage, and ShoppingCart
-        public static ItemStorage<Item> Warehouse = new ItemStorage<Item>();
-        public static ShopStorage theStore = new ShopStorage();
-        public static ShoppingCart Cart = new ShoppingCart();
-
         static void Main(string[] args)
         {
-            Console.WriteLine("##### Welcome to the shop using LINQ!! #####");
+            //Sets exit value for main switch case to false
+            bool exit = false;
 
-            //Displays main menu
-            displayMainMenu();
-
-            //Runs switch case for inputs
-            MainSelection();
-
-        }
-
-        private static void MainSelection()
-        {
-            while (true)
+            Console.WriteLine("##### Welcome to the second version of the store using LINQ #####");
+            Console.WriteLine("Please Select what you would like to do: ");
+            string mainInput= Console.ReadLine().ToUpper();
+            char mainNav = mainInput[0];
+            do
             {
-
-
-                //Switch case for main functions
-                switch (Console.ReadKey().KeyChar)
+                switch (mainNav)
                 {
-                    //Displays all items in ItemStorage, known as Warehouse
+                    //Gives user option to add items into ItemStorage "warehouse"
                     case '1':
-                        Console.Clear();
-                        foreach (var i in theStore.GetAllItems())
-                        {
-                            Console.WriteLine("\nName: " + i.Name +
-                                              " | Article Number: " + i.ArtNum +
-                                              " | Price: " + i.Price +
-                                              " | Category: " + i.Category +
-                                              " | In stock: " + i.InStock);
-                        }
-                        Console.ReadKey();
+                        Console.WriteLine("1. Add items to the Warehouse.");
+                        AddToWarehouse();
                         break;
 
-                    //Displays all items in ShopStorage known as theStore
+                    //Gives user option to add items into ShopStorage "theShop"
                     case '2':
-                        Console.Clear();
-                        foreach (var i in theStore.GetItemsInStock())
-                        {
-                            Console.WriteLine("\nName: " + i.Name +
-                                              " | Article Number: " + i.ArtNum +
-                                              " | Price: " + i.Price +
-                                              " | Category: " + i.Category +
-                                              " | In stock: " + i.InStock);
-
-                            Console.WriteLine("Would you like to add items to your cart? (Y/N)");
-                            AddToCart();
-                        }
-                        Console.ReadKey();
+                        Console.WriteLine("2. Select Items from Warehouse to add into the Shop.");
+                        AddToShop();
                         break;
 
-                    //Displays items in Shopping cart as long as it is not empty
+                    //Enters the store
                     case '3':
-                        if (Cart.GetItemsInCart() == null)
-                        {
-                            Console.WriteLine("Your cart is empty!");
-                        }
-                        else
-                        {
-                            foreach (var i in Cart.GetItemsInCart())
-                            {
-                                Console.WriteLine("\nName: " + i.Name +
-                                                  " | Article Number: " + i.ArtNum +
-                                                  " | Price: " + i.Price +
-                                                  " | Category: " + i.Category);
-                            }
-                        }
-                        Console.ReadKey();
+                        Console.WriteLine("Enter the store.");
+                        TheStore();
                         break;
 
-                    //Exit case
+                    //Exits the whole application by exiting the do-while loop
                     case '0':
-                        return;
+                        exit = true;
+                        break;
 
-                    //Default case
+                    //Default case for invalid input
                     default:
-                        Console.WriteLine("Invalid entry, try again.");
+                        Console.WriteLine("Oops! Wrong entry, try again.");
                         break;
                 }
-            }
+            } while (!exit);
+        }
+        private static void AddToWarehouse()
+        { 
+            //Method for adding things to ItemStorage "Warehouse"
         }
 
-        private static void AddToCart()
-        {
-            string input;
-            input = Console.ReadLine();
-            char nav = input[0];
-            Char.ToUpper(nav);
-
-            switch (nav)
-            {
-                case 'Y':
-                    Console.WriteLine("Enter the name of the item which you wish to purchase.");
-                    foreach (var i in theStore.GetItemsInStock())
-                    {
-                        Console.WriteLine("\nName: " + i.Name +
-                                          " | Article Number: " + i.ArtNum +
-                                          " | Price: " + i.Price +
-                                          " | Category: " + i.Category +
-                                          " | In stock: " + i.InStock);
-                        break;
-                    }
-            }
+        private static void AddToShop()
+        { 
+            //Method for adding things to ShopStorage "theShop"
         }
-        private static void displayMainMenu()
-        {
-            Console.WriteLine("\nMain Menu");
-            Console.WriteLine("\n1. View all Items.");
-            Console.WriteLine("2. View all items in stock.");
-            Console.WriteLine("3. View Items in cart.");
-            Console.WriteLine("4. Checkout.");
-            Console.WriteLine("0. Exit.");
+
+        private static void TheStore()
+        { 
+            //Runs the store
         }
     }
 }

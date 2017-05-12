@@ -8,9 +8,12 @@ namespace NewVersionOfShop
 {
     class ShopStorage : ItemStorage<Item>
     {
+        private static ItemStorage<Item> InternalStorage = new ItemStorage<Item>();
         public ShopStorage()
         {
-            InternalStorage = new List<Item>();
+
+
+
 
             InternalStorage.Add(new Item
                 {

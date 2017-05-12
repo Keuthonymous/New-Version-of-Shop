@@ -13,9 +13,10 @@ namespace NewVersionOfShop
             InternalStorage = new List<Item>();
         }
 
-        public void AddToCart(Item itemToAdd)
+        public Item Add(string itemToAdd)
         {
-            InternalStorage.Add(itemToAdd);
+            return ItemStorage.Add();
+
         }
         public IEnumerable<Item> GetItemsInCart()
         {

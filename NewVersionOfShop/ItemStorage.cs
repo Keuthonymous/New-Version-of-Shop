@@ -11,7 +11,7 @@ namespace NewVersionOfShop
     {
         #region Variables
         protected int id;
-        protected List<T> InternalStorage;
+        protected List<T> InternalStorage = new List<T>();
         #endregion
 
         #region Properties
@@ -21,19 +21,11 @@ namespace NewVersionOfShop
             set { id = value; }
         }
         #endregion
-
-        #region Constructor
-        public ItemStorage()
-        {
-            InternalStorage = new List<T>();
-        }
-        #endregion
         #region SearchParams
         //Get all items in stock
         public IEnumerable<T> GetItemsInStock()
         {
             var query = from item in InternalStorage
-                        where item.InStock == true
                         select item;
 
             return query;
@@ -80,7 +72,7 @@ namespace NewVersionOfShop
         }
 
         //Returns all items with names that match the user input
-        public IEnumerable<Item> GetItemFromName(string searchName)
+        public IEnumerable<T> GetItemFromName(string searchName)
         {
             var query = from item in InternalStorage
                         where item.Name == searchName
@@ -91,7 +83,7 @@ namespace NewVersionOfShop
         }
 
         //Returns all items with prices that match user input
-        public IEnumerable<Item> GetItemFromPrice(double searchPrice)
+        public IEnumerable<T> GetItemFromPrice(double searchPrice)
         {
             var query = from item in InternalStorage
                         where item.Price == searchPrice
@@ -102,7 +94,7 @@ namespace NewVersionOfShop
         }
 
         //Returns all items with article number that match user input
-        public IEnumerable<Item> GetItemfromArtNum(string searchArtNum)
+        public IEnumerable<T> GetItemfromArtNum(string searchArtNum)
         {
             var query = from item in InternalStorage
                         where item.ArtNum == searchArtNum
@@ -113,7 +105,7 @@ namespace NewVersionOfShop
         }
 
         //Returns all items with category that matches user input
-        public IEnumerable<Item> GetItemFromCategory(string searchCat)
+        public IEnumerable<T> GetItemFromCategory(string searchCat)
         {
             var query = from item in InternalStorage
                         where item.Category == searchCat
@@ -124,7 +116,7 @@ namespace NewVersionOfShop
         }
 
         //Returns items with higher price than that specified by user input
-        public IEnumerable<Item> GetItemOverPrice(double searchPrice)
+        public IEnumerable<T> GetItemOverPrice(double searchPrice)
         {
             var query = from item in InternalStorage
                         where item.Price >= searchPrice
@@ -135,7 +127,7 @@ namespace NewVersionOfShop
         }
 
         //Returns items with lower price than that specified by user input
-        public IEnumerable<Item> GetItemUnderPrice(double searchPrice)
+        public IEnumerable<T> GetItemUnderPrice(double searchPrice)
         {
             var query = from item in InternalStorage
                         where item.Price <= searchPrice
@@ -146,12 +138,20 @@ namespace NewVersionOfShop
         }
 
         //Gets all items in InternalStorage
-        public IEnumerable<Item> GetAllItems()
+        public IEnumerable<T> GetAllItems()
         {
             var query = from i in InternalStorage
                         select i;
 
             return query;
+        }
+
+        //Adds an item to a list
+        public T Add(string itemToAdd)
+        {
+            var query = (from i in InternalStorage
+                        where i.Name == itemToAdd
+                        select i).FirstOrDefault();
         }
         #endregion
         #region Methods
@@ -163,6 +163,10 @@ namespace NewVersionOfShop
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
+        }
+        public ItemStorage()
+        {
+            InternalStorage = new List<T>();
         }
         #endregion
     }

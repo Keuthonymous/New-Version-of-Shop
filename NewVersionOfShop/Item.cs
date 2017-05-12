@@ -14,8 +14,6 @@ namespace NewVersionOfShop
         private string name;
         private double price;
         private string category;
-        private bool inStock = false;
-        private bool inCart = false;
 
         private int m_value = 0;
         #endregion
@@ -41,16 +39,6 @@ namespace NewVersionOfShop
         {
             get { return category; }
             set { category = value; }
-        }
-        public bool InStock
-        {
-            get { return inStock; }
-            set { inStock = value; }
-        }
-        public bool InCart
-        {
-            get { return inCart; }
-            set { inCart = value; }
         }
         #endregion
         #region Constructor
