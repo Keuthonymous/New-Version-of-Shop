@@ -8,28 +8,29 @@ namespace NewVersionOfShop
 {
     class Program
     {
+
+        //Instantiates new ItemStorage, ShopStorage, and ShoppingCart
+        public static ItemStorage<Item> Warehouse = new ItemStorage<Item>();
+        public static ShopStorage theStore = new ShopStorage();
+        public static ShoppingCart Cart = new ShoppingCart();
+
         static void Main(string[] args)
         {
             Console.WriteLine("##### Welcome to the shop using LINQ!! #####");
 
             //Displays main menu
             displayMainMenu();
-            bool exit = false;
+
             //Runs switch case for inputs
-            do
-            {
-                MainSelection();
-            } while (!exit);
+            MainSelection();
+
         }
 
         private static void MainSelection()
         {
-           
+            while (true)
             {
-                //Instantiates new ItemStorage, ShopStorage, and ShoppingCart
-                ItemStorage<Item> Warehouse = new ItemStorage<Item>();
-                ShopStorage theStore = new ShopStorage();
-                ShoppingCart Cart = new ShoppingCart();
+
 
                 //Switch case for main functions
                 switch (Console.ReadKey().KeyChar)
@@ -47,7 +48,7 @@ namespace NewVersionOfShop
                         }
                         Console.ReadKey();
                         break;
-                       
+
                     //Displays all items in ShopStorage known as theStore
                     case '2':
                         Console.Clear();
@@ -64,7 +65,7 @@ namespace NewVersionOfShop
                         }
                         Console.ReadKey();
                         break;
-                    
+
                     //Displays items in Shopping cart as long as it is not empty
                     case '3':
                         if (Cart.GetItemsInCart() == null)
@@ -86,7 +87,7 @@ namespace NewVersionOfShop
 
                     //Exit case
                     case '0':
-                        return exit = true;
+                        return;
 
                     //Default case
                     default:
@@ -104,14 +105,21 @@ namespace NewVersionOfShop
             Char.ToUpper(nav);
 
             switch (nav)
-            { 
+            {
                 case 'Y':
-
-
-                    break;
+                    Console.WriteLine("Enter the name of the item which you wish to purchase.");
+                    foreach (var i in theStore.GetItemsInStock())
+                    {
+                        Console.WriteLine("\nName: " + i.Name +
+                                          " | Article Number: " + i.ArtNum +
+                                          " | Price: " + i.Price +
+                                          " | Category: " + i.Category +
+                                          " | In stock: " + i.InStock);
+                        break;
+                    }
             }
         }
-        static void displayMainMenu()
+        private static void displayMainMenu()
         {
             Console.WriteLine("\nMain Menu");
             Console.WriteLine("\n1. View all Items.");
