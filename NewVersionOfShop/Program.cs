@@ -14,15 +14,17 @@ namespace NewVersionOfShop
 
             //Displays main menu
             displayMainMenu();
-
+            bool exit = false;
             //Runs switch case for inputs
-            MainSelection();
-           
+            do
+            {
+                MainSelection();
+            } while (!exit);
         }
 
         private static void MainSelection()
         {
-            while (true)
+           
             {
                 //Instantiates new ItemStorage, ShopStorage, and ShoppingCart
                 ItemStorage<Item> Warehouse = new ItemStorage<Item>();
@@ -84,7 +86,7 @@ namespace NewVersionOfShop
 
                     //Exit case
                     case '0':
-                        return;
+                        return exit = true;
 
                     //Default case
                     default:
@@ -104,6 +106,7 @@ namespace NewVersionOfShop
             switch (nav)
             { 
                 case 'Y':
+
 
                     break;
             }
